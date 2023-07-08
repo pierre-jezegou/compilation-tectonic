@@ -45,7 +45,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: main.pdf
-          asset_name: main
+          asset_name: main.pdf
           tag: ${{ github.ref }}
           overwrite: true
           body: "PDF compiled from source"
