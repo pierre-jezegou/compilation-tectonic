@@ -34,12 +34,12 @@ jobs:
         run: ls -la
       
       # Upload pdf file in GitHub release
-      - name: Upload pdf to release
+      - name: Upload pdf to releasegit a
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/release/fichier_pdf
-          asset_name: main.pdf
+          file: main.pdf
+          asset_name: main
           tag: ${{ github.ref }}
           overwrite: true
           body: "PDF compiled from source"
