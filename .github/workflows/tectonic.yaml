@@ -6,13 +6,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      #Checks-out the repository
       - name: Checkout
         uses: actions/checkout@v3
+
+      #Enable cache
+      - uses: actions/cache@v3
+        name: Tectonic Cache
+        with:
+          path: ~/.cache/Tectonic
+          key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-tectonic-
+      
+      # Setup tectonic
       - name: Install Tectonic
         uses: wtfjoke/setup-tectonic@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Run tectonic to compile document
       - name: Compile TeX file
         run: tectonic main.tex
+
+      # List files to check compilation
       - name: Verify compilation
         run: ls -la
+      
+      # Upload pdf file in GitHub release
+      - name: Upload pdf to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/release/fichier_pdf
+          asset_name: main.pdf
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "PDF compiled from source"
