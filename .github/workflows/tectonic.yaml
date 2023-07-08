@@ -38,7 +38,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: main.pdf
+          file: target/release/main.pdf
           asset_name: main
           tag: ${{ github.ref }}
           overwrite: true
