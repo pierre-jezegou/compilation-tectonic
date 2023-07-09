@@ -36,7 +36,7 @@ jobs:
         run: tectonic main.tex
 
       # Upload pdf file in GitHub release
-      - name: Upload pdf to releasegit a
+      - name: Upload pdf to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
