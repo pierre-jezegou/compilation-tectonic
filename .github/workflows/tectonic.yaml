@@ -29,6 +29,7 @@ jobs:
         uses: wtfjoke/setup-tectonic@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          tectonic-version: 0.13.1
       
       # Run tectonic to compile document
       - name: Compile TeX file
