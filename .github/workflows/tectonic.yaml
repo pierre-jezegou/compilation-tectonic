@@ -34,11 +34,6 @@ jobs:
       - name: Compile TeX file
         run: tectonic main.tex
 
-      # List files to check compilation
-      - name: Verify compilation
-        run: ls -la
-      - run: pwd
-      
       # Upload pdf file in GitHub release
       - name: Upload pdf to releasegit a
         uses: svenstaro/upload-release-action@v2
