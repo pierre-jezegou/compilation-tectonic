@@ -2,6 +2,8 @@ name: 'Build LaTex Document'
 
 on:
   push:
+  release:
+    types: [published]
 
 permissions:
   contents: write
@@ -34,9 +36,18 @@ jobs:
       # Run tectonic to compile document
       - name: Compile TeX file
         run: tectonic main.tex
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: PDF file
+          path: main.pdf
+          if-no-files-found: error
+          retention-days: 5
 
       # Upload pdf file in GitHub release
-      - name: Upload pdf to release
+      - if: ${{ github.event_name == 'release'}}
+        name: Upload pdf to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
