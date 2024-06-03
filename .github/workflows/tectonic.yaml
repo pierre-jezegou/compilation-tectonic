@@ -15,10 +15,10 @@ jobs:
     steps:
       #Checks-out the repository
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       #Enable cache
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         name: Tectonic Cache
         with:
           path: ~/.cache/Tectonic
@@ -28,7 +28,7 @@ jobs:
       
       # Setup tectonic
       - name: Install Tectonic
-        uses: wtfjoke/setup-tectonic@v2
+        uses: wtfjoke/setup-tectonic@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           tectonic-version: 0.14.1
@@ -38,7 +38,7 @@ jobs:
         run: tectonic main.tex
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: PDF file
           path: main.pdf
