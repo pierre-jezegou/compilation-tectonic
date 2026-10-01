@@ -28,7 +28,7 @@ jobs:
       
       # Setup tectonic
       - name: Install Tectonic
-        uses: wtfjoke/setup-tectonic@v3
+        uses: wtfjoke/setup-tectonic@5e1ba6e10229bd876c6594189bdab1a62b9d0b1c # v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           #tectonic-version: 0.14.1
